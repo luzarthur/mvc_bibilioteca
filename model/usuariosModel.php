@@ -8,5 +8,9 @@
             $user = new usuariosDAO();
             return $user->criarUsuario($value);
         }
+        public function mudarSenha(usuariosVO $value){
+            $user = new usuariosDAO();
+            return $user->mudarSenha($value);
+        }
     }
 ?>

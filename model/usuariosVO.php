@@ -4,6 +4,7 @@
         private $email;
         private $nome;
         private $senha;
+        private $status;
 
         public function setID($id){
             $this->id = $id;
@@ -31,6 +32,13 @@
         }
         public function getSenha(){
             return $this->senha;
+        }
+
+        public function setStatus($status){
+            $this->status = $status;
+        }
+        public function getStatus(){
+            return $this->status;
         }
         
     }

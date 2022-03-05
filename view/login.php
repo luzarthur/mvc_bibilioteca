@@ -1,3 +1,12 @@
+<?php
+  session_start();
+  @$alerta = $_SESSION["msg"];
+  if($alerta != null){
+    echo"<script>alert('$alerta')</script>";
+  }else{
+  }
+  session_unset();
+?>
 <!DOCTYPE html>
 <html lang="pt_br">
 <head>
@@ -13,7 +22,7 @@
         <div id="form-content">
           <!-- Titulos -->
           <h2 class="active"> Login </h2>
-          <h2 class="inactive underlineHover"> <a href="inscricao.html">Criar Conta</a>  </h2>
+          <h2 class="inactive underlineHover"> <a href="inscricao.php">Criar Conta</a>  </h2>
     
      <!-- Logo -->
      <div class="logo">
@@ -30,7 +39,7 @@
 
      <!-- Esqueceu a senha -->
     <div id ="form-footer">
-        <a class="underlineHover" href="redef_senha.html">Esqueceu sua senha?</a> 
+        <a class="underlineHover" href="redef_senha.php">Esqueceu sua senha?</a> 
     </div>
   </div>
 </div>

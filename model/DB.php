@@ -21,9 +21,6 @@
             //var_dump($sql);
             return $this->conn->prepare($sql); //para modificações na tabela, o ideal é usar o prepare
         }
-        public function execReader($sql){
-            return $this->conn->query($sql);//usei query pois se trata apenas de um select
-        }
     }
 
 ?>
