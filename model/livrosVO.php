@@ -5,6 +5,7 @@
         private $autor;
         private $genero;
         private $status;
+        private $msg;
 
         public function setID($id){
             $this->id = $id;
@@ -39,6 +40,13 @@
         }
         public function getStatus(){
             return $this->status;
+        }
+
+        public function setMsg($msg){
+            $this->msg = $msg;
+        }
+        public function getMsg(){
+            return $this->msg;
         }
     }
 

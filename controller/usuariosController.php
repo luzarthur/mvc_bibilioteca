@@ -45,6 +45,7 @@ class usuariosController
         $model->criarUsuarioModel($vo);
 
         $status = $vo->getStatus();
+        //var_dump($status);
         if($status == "erro de email"){
             session_start();
             $_SESSION["msg"] = "Email inserido já foi cadastrado!Faça login ou altere o email digitado";
@@ -75,6 +76,32 @@ class usuariosController
             session_start();
             $_SESSION["msg"] = "Senha alterada com sucesso!";
             header("Location: view/home.php");
+        }
+    }
+
+    public function deletarConta(){
+        $model = new usuariosModel();
+        $vo = new usuariosVO();
+
+        $vo->setEmail($_POST["email"]);
+        $vo->setSenha($_POST["senha"]);
+        $model->deletarConta($vo);
+
+        $status = $vo->getStatus();
+        if($status == "erro de email"){
+            session_start();
+            $_SESSION["msg"] = "Email inserido não corresponde a um usuario cadastrado! Altere o email ou crie sua conta!";
+            header("Location: view/deleta_conta.php");
+        }
+        if($status == "erro de senha"){
+            session_start();
+            $_SESSION["msg"] = "Senha Incorreta!";
+            header("Location: view/deleta_conta.php");
+        }
+        if($status == "conta deletada"){
+            session_start();
+            $_SESSION["msg"] = "conta deletada";
+            header("Location: view/login.php");
         }
     }
 }

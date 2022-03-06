@@ -12,5 +12,9 @@
             $user = new usuariosDAO();
             return $user->mudarSenha($value);
         }
+        public function deletarConta(usuariosVO $value){
+            $user = new usuariosDAO();
+            return $user->deletar($value);
+        }
     }
 ?>
