@@ -10,7 +10,8 @@
         }
         public function listALLModel(){
             $livros = new livrosDAO();
-            return $livros->listAll();
+            $sql = "SELECT * FROM livros;";
+            return $livros->listar($sql);
         }
     }
 

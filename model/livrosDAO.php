@@ -61,21 +61,21 @@ class livrosDAO
             $pstm->execute();
         }
     }
-
-    public function listAll(){
-        $sql = "SELECT * FROM livros;";
-        $this->listar($sql);
-    }
     public function listar($sql){
-        $sql = "";
         $db = new DB();
         $db->getConnection();
         $pstm = $db->execSql($sql);
         $pstm->execute();
 
-        while($row = $pstm->fetch_assoc()){
+        while($row = $pstm->fetch(PDO::FETCH_ASSOC)){
             $array[] = array($row["id"],$row["nome"],$row["autor"],$row["genero"],$row["status"]);
         }
         return $array;
     }
+
+    public function listAll(){
+        $sql = "SELECT * FROM livros;";
+        $this->listar($sql);
+    }
+    
 }

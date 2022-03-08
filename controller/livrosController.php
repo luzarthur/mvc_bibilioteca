@@ -50,7 +50,7 @@ class livrosController
         $model = new livrosModel();
         
         $_SESSION["data"] = $model->listALLModel();
-        header("Location: view/pesquisar.php");
+        header("Location: view/retorno.php");
 
     }
  
