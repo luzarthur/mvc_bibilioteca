@@ -1,6 +1,4 @@
 
-
-<br><br><br><br><br><br><br<br>
 <html lang="pt_br">
 <head>
     <meta charset="UTF-8">
@@ -11,7 +9,7 @@
     
     <nav class="navbar navbar-dark bg-primary">
         <a class="navbar-brand" href="#">
-            <img src="LogoMarca.png" width="70" height="70" alt="">
+            <img src="img/LogoMarca.png" width="70" height="70" alt="">
           </a>
         <ul class="menu">
             <li><a href="home.php">Home</a></li>
@@ -41,7 +39,7 @@
 </head>
 <body class="content">
 
-    <form action="http://localhost/mvc_biblioteca/?controller=livros&Action=listAll" method="POST">
+    <form action="http://localhost/mvc_biblioteca/?controller=livros&Action=listPesq" method="POST">
         <div class= "form-group">
             <label style="font-family:Poppins, sans-serif;"for="formGroupExampleInput">Digite o que procura</label><br>
             <input type="search"  class="input-form"id="pesquisar" name="pesquisar">

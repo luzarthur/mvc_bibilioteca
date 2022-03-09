@@ -68,14 +68,10 @@ class livrosDAO
         $pstm->execute();
 
         while($row = $pstm->fetch(PDO::FETCH_ASSOC)){
-            $array[] = array($row["id"],$row["nome"],$row["autor"],$row["genero"],$row["status"]);
+            $array[] = array($row["id"],$row["nome"],$row["autor"],$row["genero"],$row["Status"]);
         }
         return $array;
     }
 
-    public function listAll(){
-        $sql = "SELECT * FROM livros;";
-        $this->listar($sql);
-    }
     
 }

@@ -47,11 +47,19 @@ class livrosController
         }
     }
     public function listALL(){
+        session_start();
         $model = new livrosModel();
-        
         $_SESSION["data"] = $model->listALLModel();
-        header("Location: view/retorno.php");
+        include("view/retorno.php");
+    }
+    public function listPesq(){
+        $model = new livrosModel();
+        $vo = new livrosVO();
 
+        $vo->setNome($_POST["pesquisar"]);
+        if($_POST["opcao"] == "livro"){
+            $model->listByName($vo);
+        }
     }
  
 }

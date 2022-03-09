@@ -9,9 +9,13 @@
             return $livros->deletar($value);
         }
         public function listALLModel(){
-            $livros = new livrosDAO();
+            $livro = new livrosDAO();
             $sql = "SELECT * FROM livros;";
-            return $livros->listar($sql);
+            return $livro->listar($sql);
+        }
+        public function listByName(livrosVO $value){
+            $livro = new livrosDAO();
+            $sql = "SELECT * FROM livros where ";
         }
     }
 

@@ -1,6 +1,3 @@
-<?php
-    session_start();
-?>
 <table width="100%">
     <tr>
         <td>ID</td>
@@ -11,8 +8,8 @@
         
     </tr>
     <?php
+        
         $retorno = $_SESSION["data"];
-        var_dump($retorno);
         foreach($retorno as $value){
     ?>
     <tr>
