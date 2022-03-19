@@ -15,8 +15,28 @@
         }
         public function listByName(livrosVO $value){
             $livro = new livrosDAO();
-            $sql = "SELECT * FROM livros where ";
+            $nome = $value->getNome();
+            $sql = "SELECT * FROM livros where nome like '%$nome%'";
+            return $livro->listar($sql);
         }
+        public function listByAutor(livrosVO $value){
+            $livro = new livrosDAO();
+            $autor = $value->getAutor();
+            $sql = "SELECT * FROM livros where autor like '%$autor%'";
+            return $livro->listar($sql);
+        }
+        public function listByGenero(livrosVO $value){
+            $livro = new livrosDAO();
+            $genero = $value->getGenero();
+            $sql = "SELECT * FROM livros where genero like '%$genero%'";
+            return $livro->listar($sql);
+        }
+        public function listDispModel(){
+            $livro = new livrosDAO();
+            $sql = "SELECT * FROM livros where Status = 'Disponivel';";
+            return $livro->listar($sql);
+        }
+
     }
 
 ?>

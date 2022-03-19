@@ -72,6 +72,11 @@ class livrosDAO
         }
         return $array;
     }
+    public function mudarStatus($status){
+        $db = new DB();
+        $db->getConnection();
+        
+    }
 
     
 }

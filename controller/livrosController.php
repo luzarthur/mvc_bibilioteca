@@ -50,7 +50,7 @@ class livrosController
         session_start();
         $model = new livrosModel();
         $_SESSION["data"] = $model->listALLModel();
-        include("view/retorno.php");
+        header("Location: view/home.php");
     }
     public function listPesq(){
         $model = new livrosModel();
@@ -58,8 +58,30 @@ class livrosController
 
         $vo->setNome($_POST["pesquisar"]);
         if($_POST["opcao"] == "livro"){
-            $model->listByName($vo);
+            $vo->setNome($_POST["pesquisar"]);
+            session_start();
+            $_SESSION["data"] = $model->listByName($vo);
+            header("Location: view/pesquisar.php");
         }
+        if($_POST["opcao"] == "autor"){
+            $vo->setAutor($_POST["pesquisar"]);
+            session_start();
+            $_SESSION["data"] = $model->listByAutor($vo);
+            header("Location: view/pesquisar.php");
+        }
+        if($_POST["opcao"] == "genero"){
+            $vo->setGenero($_POST["pesquisar"]);
+            session_start();
+            $_SESSION["data"] = $model->listByGenero($vo);
+            header("Location: view/pesquisar.php");
+        }
+    }
+
+    public function listDisp(){
+        session_start();
+        $model = new livrosModel();
+        $_SESSION["data"] = $model->listDispModel();
+        header("Location: view/pegar_livro.php");
     }
  
 }
