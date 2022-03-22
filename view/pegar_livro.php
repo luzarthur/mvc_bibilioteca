@@ -44,7 +44,7 @@
     <br>
     <label style="font-family:Poppins, sans-serif" for="formGroupExampleInput">Estes são os nosso livros disponiveis, fique a vontade para escolher:</label><br><br>
 
-    <form action="" metohd="POST">
+    <form action="http://localhost/mvc_biblioteca/?controller=livros&Action=emprestar" method="POST">
         <table class=table table-bordless table-stripped table-dark>
             <tr>
                 <td>Selecione</td>
@@ -61,7 +61,7 @@
             foreach ($retorno as $value) {
             ?>
                 <tr>
-                    <td><input type="checkbox" name="escolha" value="<?= $row['id'] ?>"></td>
+                    <td><input type="checkbox" id = "1" name="escolha" value=<?php $value[0];?>></td>
                     <td><?php echo $value[0]; ?></td>
                     <td><?php echo $value[1]; ?></td>
                     <td><?php echo $value[2]; ?></td>
@@ -70,10 +70,19 @@
                 </tr>
             <?php } ?>
         </table>
-        <button type="submit" style="background-color:#198754;padding:8px 19px;" id="enviar_id">
-            Pegar Livro emprestado
-        </button>
+        <input type="submit" style="background-color:#198754;padding:8px 19px;" value="Pegar Livro emprestado">
+            
     </form>
+    <?php
+    session_unset();
+    /*session_unset();
+    if (isset($alerta)) {
+        $alerta = $_SESSION["data"];
+        echo "<script>alert('$alerta')</script>";
+    } else {
+    }*/
+    ?>
+
 
     <br><br><br><br><br><br><br><br><br><br><br><br>
     <!-- Footer -->

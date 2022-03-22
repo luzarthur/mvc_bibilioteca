@@ -36,6 +36,10 @@
             $sql = "SELECT * FROM livros where Status = 'Disponivel';";
             return $livro->listar($sql);
         }
+        Public function emprestarModel(livrosVO $value){
+            $livro = new livrosDAO();
+            return $livro->mudarStatus("Emprestado",$value);
+        }
 
     }
 

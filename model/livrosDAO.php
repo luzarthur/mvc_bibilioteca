@@ -72,9 +72,19 @@ class livrosDAO
         }
         return $array;
     }
-    public function mudarStatus($status){
+    public function mudarStatus($status,livrosVO $value){
         $db = new DB();
+        $id = $value->getID();
+        echo $id;
+        echo $status;
+        
+        $sql = "UPDATE livros SET livros.Status = :status where livros.id = :id";
         $db->getConnection();
+        $pstm = $db->execSql($sql);
+        $pstm->bindParam(':id', $id);
+        $pstm->bindParam(':status', $status);
+        $pstm->execute();
+        $value->setMsg("livro emprestado");
         
     }
 
