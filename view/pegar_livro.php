@@ -57,32 +57,29 @@
             </tr>
             <?php
             session_start();
-            $retorno = $_SESSION["data"];
-            foreach ($retorno as $value) {
+            if(isset($_SESSION["data"])){
+                $retorno = $_SESSION["data"];
+                foreach ($retorno as $value) {
             ?>
                 <tr>
-                    <td><input type="checkbox" id = "1" name="escolha" value=<?php $value[0];?>></td>
+                    <td><input type="checkbox" id = "1" name="escolha" value="<?= $value[0] ?>"></td>
                     <td><?php echo $value[0]; ?></td>
                     <td><?php echo $value[1]; ?></td>
                     <td><?php echo $value[2]; ?></td>
                     <td><?php echo $value[3]; ?></td>
                     <td><?php echo $value[4]; ?></td>
                 </tr>
-            <?php } ?>
+            <?php } 
+                }else{
+                }?>
         </table>
         <input type="submit" style="background-color:#198754;padding:8px 19px;" value="Pegar Livro emprestado">
             
     </form>
     <?php
     session_unset();
-    /*session_unset();
-    if (isset($alerta)) {
-        $alerta = $_SESSION["data"];
-        echo "<script>alert('$alerta')</script>";
-    } else {
-    }*/
+    session_destroy();
     ?>
-
 
     <br><br><br><br><br><br><br><br><br><br><br><br>
     <!-- Footer -->

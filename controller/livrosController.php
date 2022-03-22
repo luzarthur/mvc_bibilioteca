@@ -93,14 +93,25 @@ class livrosController
         $vo = new livrosVO();
 
         $vo->setID($_POST["escolha"]);
-        var_dump($_POST["escolha"]);
         $model->emprestarModel($vo);
-        //header("Location: view/pegar_livro.php");
-        /*$msg = $vo->getMsg();
+        $msg = $vo->getMsg();
+        
         if ($msg == "livro emprestado") {
             session_start();
-            $_SESSION["data"] = "Livro adquirido! Boa leitura!";
-            
-        }*/
+            $_SESSION["msg"] = "Livro adquirido! Boa leitura!";
+            $alerta = $_SESSION["msg"];
+            echo "<script>alert('$alerta')</script>";
+            echo "<script>window.location.replace('http://localhost/mvc_biblioteca/?controller=livros&Action=listDisp')</script>";
+        }
+    }
+
+    public function devolver()
+    {
+        $model = new livrosModel();
+        $vo = new livrosVO();
+
+        $vo->setID($_POST["idLivro"]);
+        $model->devolverModel($vo);
+
     }
 }

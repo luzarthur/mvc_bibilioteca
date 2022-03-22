@@ -18,7 +18,7 @@
         
         }
         public function execSql($sql){
-            var_dump($sql);
+            //var_dump($sql);
             return $this->conn->prepare($sql); //para modificações na tabela, o ideal é usar o prepare
         }
     }
