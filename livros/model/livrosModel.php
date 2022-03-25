@@ -43,7 +43,10 @@
         }
         public function devolverModel(livrosVO $value){
             $livro = new livrosDAO();
+            $value->setMsg('livro devolvido');
             return $livro->mudarStatus("Disponivel",$value);
+           
+            
         }
 
     }

@@ -1,11 +1,14 @@
 <?php
   session_start();
-  @$alerta = $_SESSION["msg"];
-  if($alerta != null){
-    echo"<script>alert('$alerta')</script>";
+  if(isset($_SESSION["msg"])){
+    $alerta = $_SESSION["msg"];
+?>
+    <script>alert("<?php echo $alerta; ?>")</script>
+  <?php 
   }else{
   }
   session_unset();
+  session_destroy();
 ?>
 
 <!DOCTYPE html>

@@ -1,7 +1,7 @@
 <?php
-    
      if(isset($_GET["controller"])){
-         include "controller/".$_GET["controller"]."Controller.php";
+         $controller = $_GET["controller"];
+         include $controller."/"."controller/".$controller."Controller.php";
  
          $class = $_GET["controller"]."Controller";
          $action =  $_GET["Action"]."()";
@@ -11,7 +11,8 @@
              eval("\$controller->$action;");
          }
      }else{
-         echo "nada";
+         //echo "nada";
+         header("Location: usuarios/view/login.php");
      }
 ?>
      

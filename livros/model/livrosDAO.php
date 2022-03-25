@@ -32,9 +32,9 @@ class livrosDAO
             $sql = "INSERT INTO livros (nome, autor, genero) VALUES (:nome, :autor, :genero)";
             $db->getConnection();
             $pstm = $db->execSql($sql);
-            $pstm->bindParam(':nome',$nome);
-            $pstm->bindParam(':autor',$autor);
-            $pstm->bindParam(':genero',$genero);
+            $pstm->bindParam(':nome', $nome);
+            $pstm->bindParam(':autor', $autor);
+            $pstm->bindParam(':genero', $genero);
             $pstm->execute();
             $value->setMsg("livro cadastrado");
         } else {
@@ -49,42 +49,53 @@ class livrosDAO
         $sql = "SELECT COUNT(*) FROM livros WHERE id = :id;";
         $db->getConnection();
         $pstm = $db->execSql($sql);
-        $pstm->bindParam(':id',$id);
+        $pstm->bindParam(':id', $id);
         $pstm->execute();
-        
-        if($pstm->fetchColumn() == 0){
+
+        if ($pstm->fetchColumn() == 0) {
             $value->setMsg("nao existe");
-        }else{
+        } else {
             $sql = "DELETE FROM livros where id = :id;";
             $pstm = $db->execSql($sql);
-            $pstm->bindParam(':id',$id);
+            $pstm->bindParam(':id', $id);
             $pstm->execute();
         }
     }
-    public function listar($sql){
+    public function listar($sql)
+    {
         $db = new DB();
         $db->getConnection();
         $pstm = $db->execSql($sql);
         $pstm->execute();
 
-        while($row = $pstm->fetch(PDO::FETCH_ASSOC)){
-            $array[] = array($row["id"],$row["nome"],$row["autor"],$row["genero"],$row["Status"]);
+        while ($row = $pstm->fetch(PDO::FETCH_ASSOC)) {
+            $array[] = array($row["id"], $row["nome"], $row["autor"], $row["genero"], $row["Status"]);
         }
         return $array;
     }
-    public function mudarStatus($status,livrosVO $value){
+    public function mudarStatus($status, livrosVO $value)
+    {
         $db = new DB();
         $id = $value->getID();
-        
-        $sql = "UPDATE livros SET livros.Status = :status where livros.id = :id";
+
+        $sql = "SELECT COUNT(*) FROM livros where livros.id = :id and livros.Status = :status;";
         $db->getConnection();
         $pstm = $db->execSql($sql);
         $pstm->bindParam(':id', $id);
         $pstm->bindParam(':status', $status);
         $pstm->execute();
-       
-        
-    }
 
-    
+        if ($pstm->fetchColumn() == 1) {
+            $value->setMsg("status igual");
+        } elseif ($pstm->fetchColumn() == 0) {
+
+            $sql = "UPDATE livros SET livros.Status = :status where livros.id = :id";
+            $db->getConnection();
+            $pstm = $db->execSql($sql);
+            $pstm->bindParam(':id', $id);
+            $pstm->bindParam(':status', $status);
+            $pstm->execute();
+            
+        }
+    }
 }

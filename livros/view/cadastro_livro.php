@@ -1,11 +1,14 @@
 <?php
   session_start();
-  @$alerta = $_SESSION["msg"];
-  if($alerta != null){
-    echo"<script>alert('$alerta')</script>";
+  if(isset($_SESSION["msg"])){
+    $alerta = $_SESSION["msg"];
+?>
+    <script>alert("<?php echo $alerta; ?>")</script>
+<?php 
   }else{
   }
   session_unset();
+  session_destroy();
 ?>
 
 <!DOCTYPE html>
@@ -22,24 +25,24 @@
             <img src="img/LogoMarca.png" width="70" height="70" alt="">
           </a>
         <ul class="menu">
-            <li><a href="home.php">Home</a></li>
+            <li><a href="http://localhost/mvc_biblioteca/livros/listAll">Home</a></li>
             <li><a href="pesquisar.php">Pesquisar Livros</a></li>
             <li><a href="#">Meus livros</a>
                 <ul>
-                     <li><a href="pegar_livro.php">Solicitar Livro</a></li>
+                     <li><a href="http://localhost/mvc_biblioteca/livros/listDisp">Solicitar Livro</a></li>
                      <li><a href="devolver_livro.php">Devolver Livro</a></li>
                   </ul>
            </li>
                   <li><a href="#">Gerenciar Biblioteca</a>
                      <ul>
-                          <li><a href="cadastro_livro.html">Cadastrar Livro</a></li>
+                          <li><a href="cadastro_livro.php">Cadastrar Livro</a></li>
                           <li><a href="deletar_livro.php">Deletar Livro</a></li>
                        </ul>
                 </li>
                 <li><a href="#">Minha Conta</a>
                     <ul>
-                         <li><a href="deleta_conta.php">Excluir Conta</a></li>
-                         <li><a href="index.html">Fazer Logoff</a></li>
+                         <li><a href="http://localhost/mvc_biblioteca/usuarios/view/deleta_conta.php">Excluir Conta</a></li>
+                         <li><a href="http://localhost/mvc_biblioteca/usuarios/view/login.php">Fazer Logoff</a></li>
                       </ul>
                </li>
             

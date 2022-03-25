@@ -1,7 +1,7 @@
 <?php
 function __autoload($class_name)
 {
-    include "model/" . $class_name . ".php";
+    include "usuarios/model/" . $class_name . ".php";
 }
 
 class usuariosController
@@ -20,17 +20,17 @@ class usuariosController
         if($status == "erro de email"){
             session_start();
             $_SESSION["msg"] = "Email inserido não corresponde a um usuario cadastrado! Altere o email ou crie sua conta!";
-            header("Location: view/login.php");
+            header("Location: http://localhost/mvc_biblioteca/usuarios/view/login.php");
         }
         if($status == "erro de senha"){
             session_start();
             $_SESSION["msg"] = "Senha Incorreta!";
-            header("Location: view/login.php");
+            header("Location: http://localhost/mvc_biblioteca/usuarios/view/login.php");
         }
         if($status == "login ok"){
             session_start();
             $_SESSION["msg"] = "Login Realizado!";
-            header("Location: view/home.php");
+            header("Location: http://localhost/mvc_biblioteca/livros/listAll");
         }
 
     }
@@ -49,12 +49,12 @@ class usuariosController
         if($status == "erro de email"){
             session_start();
             $_SESSION["msg"] = "Email inserido já foi cadastrado!Faça login ou altere o email digitado";
-            header("Location: view/inscricao.php");
+            header("Location: http://localhost/mvc_biblioteca/usuarios/view/inscricao.php");
         }
         if($status == "cadastro ok"){
             session_start();
             $_SESSION["msg"] = "Cadastro realizado com sucesso!";
-            header("Location: view/home.php");
+            header("Location: http://localhost/mvc_biblioteca/livros/listAll");
         }
     }
 
@@ -70,12 +70,12 @@ class usuariosController
         if($status == "erro de email"){
             session_start();
             $_SESSION["msg"] = "Email inserido não corresponde a um usuario cadastrado! Altere o email ou crie sua conta! ";
-            header("Location: view/redef_senha.php");
+            header("Location: http://localhost/mvc_biblioteca/usuarios/view/redef_senha.php");
         }
         if($status == "senha alterada"){
             session_start();
             $_SESSION["msg"] = "Senha alterada com sucesso!";
-            header("Location: view/home.php");
+            header("Location: http://localhost/mvc_biblioteca/livros/listAll");
         }
     }
 
@@ -91,17 +91,17 @@ class usuariosController
         if($status == "erro de email"){
             session_start();
             $_SESSION["msg"] = "Email inserido não corresponde a um usuario cadastrado! Altere o email ou crie sua conta!";
-            header("Location: view/deleta_conta.php");
+            header("Location: http://localhost/mvc_biblioteca/usuarios/view/deleta_conta.php");
         }
         if($status == "erro de senha"){
             session_start();
             $_SESSION["msg"] = "Senha Incorreta!";
-            header("Location: view/deleta_conta.php");
+            header("Location: http://localhost/mvc_biblioteca/usuarios/view/deleta_conta.php");
         }
         if($status == "conta deletada"){
             session_start();
             $_SESSION["msg"] = "conta deletada";
-            header("Location: view/login.php");
+            header("Location: http://localhost/mvc_biblioteca/usuarios/view/login.php");
         }
     }
 }

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt_br">
 <head>
@@ -14,24 +15,24 @@
             <img src="img/LogoMarca.png" width="70" height="70" alt="">
           </a>
         <ul class="menu">
-            <li><a href="http://localhost/mvc_biblioteca/?controller=livros&Action=listAll">Home</a></li>
+            <li><a href="http://localhost/mvc_biblioteca/livros/listAll">Home</a></li>
             <li><a href="pesquisar.php">Pesquisar Livros</a></li>
             <li><a href="#">Meus livros</a>
                 <ul>
-                     <li><a href="http://localhost/mvc_biblioteca/?controller=livros&Action=listDisp">Solicitar Livro</a></li>
+                     <li><a href="http://localhost/mvc_biblioteca/livros/listDisp">Solicitar Livro</a></li>
                      <li><a href="devolver_livro.php">Devolver Livro</a></li>
                   </ul>
            </li>
                   <li><a href="#">Gerenciar Biblioteca</a>
                      <ul>
-                          <li><a href="cadastro_livro.html">Cadastrar Livro</a></li>
+                          <li><a href="cadastro_livro.php">Cadastrar Livro</a></li>
                           <li><a href="deletar_livro.php">Deletar Livro</a></li>
                        </ul>
                 </li>
                 <li><a href="#">Minha Conta</a>
                     <ul>
-                         <li><a href="deleta_conta.php">Excluir Conta</a></li>
-                         <li><a href="index.html">Fazer Logoff</a></li>
+                         <li><a href="http://localhost/mvc_biblioteca/usuarios/view/deleta_conta.php">Excluir Conta</a></li>
+                         <li><a href="http://localhost/mvc_biblioteca/usuarios/view/login.php">Fazer Logoff</a></li>
                       </ul>
                </li>
             
@@ -74,7 +75,14 @@
             <td><?php echo $value[3];?></td>
             <td><?php echo $value[4];?></td>
         </tr>
-        <?php } ?>
+        <?php } 
+            session_unset();
+            if(session_unset() == true){
+                @header("Location:http://localhost/mvc_biblioteca/livros/listAll");
+            }elseif(session_unset() == false){
+               session_reset();
+            }
+        ?>
     </table>
     
 </body>

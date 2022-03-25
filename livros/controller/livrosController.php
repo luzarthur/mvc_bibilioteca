@@ -1,7 +1,7 @@
 <?php
 function __autoload($class_name)
 {
-    include "model/" . $class_name . ".php";
+    include "livros/model/" . $class_name . ".php";
 }
 
 class livrosController
@@ -20,7 +20,7 @@ class livrosController
         if ($msg == "livro cadastrado") {
             session_start();
             $_SESSION["msg"] = "Livro Cadastrado com sucesso!";
-            header("Location: view/cadastro_livro.php");
+            header("Location: livros/view/cadastro_livro.php");
         }
         if ($msg == "livro ja existe") {
             session_start();
@@ -40,11 +40,11 @@ class livrosController
         if ($msg == "nao existe") {
             session_start();
             $_SESSION["msg"] = "Esse ID não corresponde a um livro cadastrado!";
-            header("Location: view/deletar_livro.php");
+            header("Location: livros/view/deletar_livro.php");
         } else {
             session_start();
             $_SESSION["msg"] = "Livro deletado!";
-            header("Location: view/deletar_livro.php");
+            header("Location: livros/view/deletar_livro.php");
         }
     }
     public function listALL()
@@ -52,7 +52,7 @@ class livrosController
         session_start();
         $model = new livrosModel();
         $_SESSION["data"] = $model->listALLModel();
-        header("Location: view/home.php");
+        header("Location: http://localhost/mvc_biblioteca/livros/view/home.php");
     }
     public function listPesq()
     {
@@ -64,19 +64,19 @@ class livrosController
             $vo->setNome($_POST["pesquisar"]);
             session_start();
             $_SESSION["data"] = $model->listByName($vo);
-            header("Location: view/pesquisar.php");
+            header("Location: http://localhost/mvc_biblioteca/livros/view/pesquisar.php");
         }
         if ($_POST["opcao"] == "autor") {
             $vo->setAutor($_POST["pesquisar"]);
             session_start();
             $_SESSION["data"] = $model->listByAutor($vo);
-            header("Location: view/pesquisar.php");
+            header("Location: http://localhost/mvc_biblioteca/livros/view/pesquisar.php");
         }
         if ($_POST["opcao"] == "genero") {
             $vo->setGenero($_POST["pesquisar"]);
             session_start();
             $_SESSION["data"] = $model->listByGenero($vo);
-            header("Location: view/pesquisar.php");
+            header("Location: http://localhost/mvc_biblioteca/livros/view/pesquisar.php");
         }
     }
 
@@ -85,7 +85,7 @@ class livrosController
         session_start();
         $model = new livrosModel();
         $_SESSION["data"] = $model->listDispModel();
-        header("Location: view/pegar_livro.php");
+        header("Location: http://localhost/mvc_biblioteca/livros/view/pegar_livro.php");
     }
     public function emprestar()
     {
@@ -98,10 +98,11 @@ class livrosController
         
         if ($msg == "livro emprestado") {
             session_start();
-            $_SESSION["msg"] = "Livro adquirido! Boa leitura!";
-            $alerta = $_SESSION["msg"];
-            echo "<script>alert('$alerta')</script>";
-            echo "<script>window.location.replace('http://localhost/mvc_biblioteca/?controller=livros&Action=listDisp')</script>";
+            //$_SESSION["msg"] = "Livro adquirido! Boa leitura!";
+            //$alerta = $_SESSION["msg"];
+            //echo "<script>alert('$alerta')</script>";
+            //echo "<script>window.location.replace('http://localhost/mvc_biblioteca/livros/listDisp')</script>";
+            header("Location: http://localhost/mvc_biblioteca/livros/listDisp");
         }
     }
 
@@ -109,9 +110,21 @@ class livrosController
     {
         $model = new livrosModel();
         $vo = new livrosVO();
-
+        
         $vo->setID($_POST["idLivro"]);
         $model->devolverModel($vo);
+        $msg = $vo->getMsg();
+
+        if($msg == "livro devolvido"){
+            session_start();
+            $_SESSION["msg"] = "Livro devolvido!Obrigado e volte sempre!";
+            header("Location: http://localhost/mvc_biblioteca/livros/view/devolver_livro.php");
+        }elseif($msg == "status igual"){
+            session_start();
+            $_SESSION["msg"] = "ID inserido não corresponde a um livro emprestado, verifique e tente novamente!";
+            header("Location: http://localhost/mvc_biblioteca/livros/view/devolver_livro.php");
+        }
+
 
     }
 }

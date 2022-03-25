@@ -1,11 +1,14 @@
 <?php
   session_start();
-  @$alerta = $_SESSION["msg"];
-  if($alerta != null){
-    echo"<script>alert('$alerta')</script>";
+  if(isset($_SESSION["msg"])){
+    $alerta = $_SESSION["msg"];
+?>
+    <script>alert("<?php echo $alerta; ?>")</script>
+  <?php 
   }else{
   }
   session_unset();
+  session_destroy();
 ?>
 <!DOCTYPE html>
 <html lang="pt_br">
@@ -30,7 +33,7 @@
       </div>
 
     <!-- Formulario de Login -->
-    <form method="POST" action="http://localhost/mvc_biblioteca/?controller=usuarios&Action=login">
+    <form method="POST" action="http://localhost/mvc_biblioteca/usuarios/login">
         <input type="email" id="email" name="email" class="input-form" required = "required"placeholder="Digite seu e-mail"><br>
         <input type="password" id="password" name ="senha"minlength="6"
         maxlength="8" size="10" class="input-form" name="senha" required =  "required" placeholder="Digite sua senha"><br>
