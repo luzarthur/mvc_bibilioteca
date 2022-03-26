@@ -76,11 +76,11 @@
             <td><?php echo $value[4];?></td>
         </tr>
         <?php } 
-            session_unset();
-            if(session_unset() == true){
-                @header("Location:http://localhost/mvc_biblioteca/livros/listAll");
-            }elseif(session_unset() == false){
-               session_reset();
+            if(isset($retorno)){
+                session_unset();
+                session_destroy();
+            }else{
+                header("Location:http://localhost/mvc_biblioteca/livros/listAll");
             }
         ?>
     </table>

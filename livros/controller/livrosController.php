@@ -85,7 +85,7 @@ class livrosController
         session_start();
         $model = new livrosModel();
         $_SESSION["data"] = $model->listDispModel();
-        header("Location: http://localhost/mvc_biblioteca/livros/view/pegar_livro.php");
+        header("Location: http://localhost/mvc_biblioteca/livros/view/pegar_livro.php"); 
     }
     public function emprestar()
     {
@@ -98,7 +98,7 @@ class livrosController
         
         if ($msg == "livro emprestado") {
             session_start();
-            //$_SESSION["msg"] = "Livro adquirido! Boa leitura!";
+            $_SESSION["msg"] = "Livro adquirido! Boa leitura!";
             //$alerta = $_SESSION["msg"];
             //echo "<script>alert('$alerta')</script>";
             //echo "<script>window.location.replace('http://localhost/mvc_biblioteca/livros/listDisp')</script>";

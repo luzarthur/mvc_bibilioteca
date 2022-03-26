@@ -1,4 +1,18 @@
+<?php
+session_start();
+ if(isset($_SESSION["msg"])){
+   $alerta = $_SESSION["msg"];
+?>
+   <script>alert("<?php echo $alerta; ?>")</script>
+ <?php 
+ }else{
+     //echo "oi";
+     session_write_close();
+ }
+ session_unset();
+ session_write_close();
 
+?>
 <html lang="pt_br">
 <head>
     <meta charset="UTF-8">
@@ -77,13 +91,12 @@
 
     </form>
     <?php
-    session_unset();   
-            if(session_unset() == true){
-                session_destroy();
-                @header("Location:http://localhost/mvc_biblioteca/livros/listDisp");
-            }elseif(session_unset() == false){
-               session_reset();
-            }
+        if(isset($retorno)){
+            session_unset();
+            session_destroy();
+        }else{
+            header("Location:http://localhost/mvc_biblioteca/livros/listDisp");
+        }
     ?>
 
     <br><br><br><br><br><br><br><br><br><br><br><br>
