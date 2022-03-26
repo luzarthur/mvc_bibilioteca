@@ -1,18 +1,9 @@
-<?php
-session_start();
- if(isset($_SESSION["msg"])){
-   $alerta = $_SESSION["msg"];
-?>
-   <script>alert("<?php echo $alerta; ?>")</script>
- <?php 
- }else{
-     //echo "oi";
-     session_write_close();
- }
- session_unset();
- session_write_close();
+<script>
+    function alerta(){
+        alert('Livro adquirido! Boa leitura!')
+    }
+</script>
 
-?>
 <html lang="pt_br">
 <head>
     <meta charset="UTF-8">
@@ -58,7 +49,7 @@ session_start();
     <br>
     <label style="font-family:Poppins, sans-serif" for="formGroupExampleInput">Estes são os nosso livros disponiveis, fique a vontade para escolher:</label><br><br>
 
-    <form action="http://localhost/mvc_biblioteca/livros/emprestar" method="POST">
+    <form action="http://localhost/mvc_biblioteca/livros/emprestar" method="POST" onsubmit="alerta()">
         <table class=table table-bordless table-stripped table-dark>
             <tr>
                 <td>Selecione</td>
@@ -76,7 +67,7 @@ session_start();
                 foreach ($retorno as $value) {
             ?>
                     <tr>
-                        <td><input type="checkbox" id="1" name="escolha" value="<?= $value[0] ?>"></td>
+                        <td><input type="radio" required id="1" name="escolha" value="<?= $value[0] ?>"></td>
                         <td><?php echo $value[0]; ?></td>
                         <td><?php echo $value[1]; ?></td>
                         <td><?php echo $value[2]; ?></td>

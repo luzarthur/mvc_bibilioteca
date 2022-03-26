@@ -99,9 +99,6 @@ class livrosController
         if ($msg == "livro emprestado") {
             session_start();
             $_SESSION["msg"] = "Livro adquirido! Boa leitura!";
-            //$alerta = $_SESSION["msg"];
-            //echo "<script>alert('$alerta')</script>";
-            //echo "<script>window.location.replace('http://localhost/mvc_biblioteca/livros/listDisp')</script>";
             header("Location: http://localhost/mvc_biblioteca/livros/listDisp");
         }
     }
