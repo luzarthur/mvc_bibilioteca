@@ -1,3 +1,13 @@
+<?php
+    session_start();
+    if(isset($_SESSION["email"]) and isset($_SESSION["senha"])){
+        session_commit();
+    }else{
+        header('Location: http://localhost/mvc_biblioteca/usuarios/view/login.php');
+    }
+
+?>
+
 <script>
     function alerta(){
         alert('Livro adquirido! Boa leitura!')
@@ -61,7 +71,7 @@
 
             </tr>
             <?php
-            session_start();
+            //session_start();
             if (isset($_SESSION["data"])) {
                 $retorno = $_SESSION["data"];
                 foreach ($retorno as $value) {
@@ -78,13 +88,13 @@
             } else {
             } ?>
         </table>
-        <input type="submit" style="background-color:#198754;padding:8px 19px;" value="Pegar Livro emprestado">
-
+        <input type="submit" class="btn btn-lg btn-block btn-Success" value="Pegar Livro emprestado">
+        <a href="http://localhost/mvc_biblioteca/livros/listDisp"><buttton class="btn btn-lg btn-block btn-primary">Atualizar Lista</buttton></a>
     </form>
     <?php
         if(isset($retorno)){
             session_unset();
-            session_destroy();
+            //session_destroy();
         }else{
             header("Location:http://localhost/mvc_biblioteca/livros/listDisp");
         }

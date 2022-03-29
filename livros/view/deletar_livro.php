@@ -1,16 +1,18 @@
 <?php
-session_start();
-if (isset($_SESSION["msg"])) {
-  $alerta = $_SESSION["msg"];
-?>
-  <script>
-    alert("<?php echo $alerta; ?>")
-  </script>
-<?php
-} else {
-}
-session_unset();
-session_destroy();
+ session_start();
+ if(isset($_SESSION["email"]) and isset($_SESSION["senha"])){
+    if(isset($_SESSION["msg"])){
+        $alerta = $_SESSION["msg"];
+    ?>
+   <script>alert("<?php echo $alerta; ?>")</script>
+ <?php
+    }else{
+       
+    }
+ }else{
+    header('Location: http://localhost/mvc_biblioteca/usuarios/view/login.php');
+ }
+ unset($_SESSION["msg"]);
 ?>
 
 <!DOCTYPE html>

@@ -29,7 +29,8 @@ class usuariosController
         }
         if($status == "login ok"){
             session_start();
-            $_SESSION["msg"] = "Login Realizado!";
+            $_SESSION["email"] = $_POST["email"];
+            $_SESSION["senha"] = $_POST["senha"];
             header("Location: http://localhost/mvc_biblioteca/livros/listAll");
         }
 

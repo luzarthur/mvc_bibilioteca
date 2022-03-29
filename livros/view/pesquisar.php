@@ -1,5 +1,14 @@
-<html lang="pt_br">
+<?php
+    session_start();
+    if(isset($_SESSION["email"]) and isset($_SESSION["senha"])){
+        session_commit();
+    }else{
+        header('Location: http://localhost/mvc_biblioteca/usuarios/view/login.php');
+    }
 
+?>
+
+<html lang="pt_br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -58,7 +67,7 @@
 
     </form>
     <?php
-    session_start();
+    //session_start();
     if (isset($_SESSION["data"])) {
     ?>
         <table class=table table-bordless table-stripped table-dark>
@@ -86,7 +95,7 @@
     <?php } else {
     }
     session_unset();
-    session_destroy();
+    //session_destroy();
     ?>
 </body>
 

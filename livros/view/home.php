@@ -1,4 +1,12 @@
+<?php
+    session_start();
+    if(isset($_SESSION["email"]) and isset($_SESSION["senha"])){
+        session_commit();
+    }else{
+        header('Location: http://localhost/mvc_biblioteca/usuarios/view/login.php');
+    }
 
+?>
 <!DOCTYPE html>
 <html lang="pt_br">
 <head>
@@ -64,7 +72,6 @@
             
         </tr>
         <?php
-            session_start();
             $retorno = $_SESSION["data"];
             foreach($retorno as $value){
         ?>
@@ -78,12 +85,13 @@
         <?php } 
             if(isset($retorno)){
                 session_unset();
-                session_destroy();
             }else{
                 header("Location:http://localhost/mvc_biblioteca/livros/listAll");
             }
         ?>
     </table>
+    <br>
+    <a href="http://localhost/mvc_biblioteca/livros/listAll"><buttton class="btn btn-lg btn-block btn-primary">Atualizar Lista</buttton></a>
     
 </body>
   <!-- Footer -->
