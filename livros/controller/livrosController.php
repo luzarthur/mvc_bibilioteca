@@ -25,7 +25,7 @@ class livrosController
         if ($msg == "livro ja existe") {
             session_start();
             $_SESSION["msg"] = "Os dados inseridos correspondem a um livro ja cadastrado em nossa biblioteca!";
-            header("Location: view/cadastro_livro.php");
+            header("Location: livros/view/cadastro_livro.php");
         }
     }
     public function deletar()
@@ -112,16 +112,16 @@ class livrosController
         $model->devolverModel($vo);
         $msg = $vo->getMsg();
 
-        if($msg == "livro devolvido"){
-            session_start();
-            $_SESSION["msg"] = "Livro devolvido!Obrigado e volte sempre!";
-            header("Location: http://localhost/mvc_biblioteca/livros/view/devolver_livro.php");
-        }elseif($msg == "status igual"){
+        if($msg == "status igual"){
             session_start();
             $_SESSION["msg"] = "ID inserido não corresponde a um livro emprestado, verifique e tente novamente!";
             header("Location: http://localhost/mvc_biblioteca/livros/view/devolver_livro.php");
+        }else{
+            $msg = $vo->setMsg("livro devolvido");
+            session_start();
+            $_SESSION["msg"] = "Livro devolvido!Obrigado e volte sempre!";
+            header("Location: http://localhost/mvc_biblioteca/livros/view/devolver_livro.php");
         }
-
 
     }
 }
