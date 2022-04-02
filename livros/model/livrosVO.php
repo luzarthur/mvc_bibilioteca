@@ -6,6 +6,7 @@
         private $genero;
         private $status;
         private $msg;
+        private $usuario;
 
         public function setID($id){
             $this->id = $id;
@@ -47,6 +48,13 @@
         }
         public function getMsg(){
             return $this->msg;
+        }
+
+        public function setUsuario($usuario){
+            $this->usuario = $usuario;
+        }
+        public function getUsuario(){
+            return $this->usuario;
         }
     }
 

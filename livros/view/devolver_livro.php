@@ -1,18 +1,19 @@
 <?php
 session_start();
- if(isset($_SESSION["email"]) and isset($_SESSION["senha"])){
-    if(isset($_SESSION["msg"])){
+if (isset($_SESSION["email"]) and isset($_SESSION["senha"])) {
+    if (isset($_SESSION["msg"])) {
         $alerta = $_SESSION["msg"];
-    ?>
-   <script>alert("<?php echo $alerta; ?>")</script>
- <?php
-    }else{
-       
+?>
+        <script>
+            alert("<?php echo $alerta; ?>")
+        </script>
+<?php
+    } else {
     }
- }else{
+} else {
     header('Location: http://localhost/mvc_biblioteca/usuarios/view/login.php');
- }
- unset($_SESSION["msg"]);
+}
+unset($_SESSION["msg"]);
 ?>
 
 <html lang="pt_br">
@@ -66,12 +67,46 @@ session_start();
     </script>
     <br>
     <form action="http://localhost/mvc_biblioteca/livros/devolver" method="POST">
-        <div class="form-group">
-            <label style="font-family:Poppins, sans-serif;" for="formGroupExampleInput">Digite o ID do livro que deseja devolver</label><br>
-            <input type="text" class="input-form" id="digID" name="idLivro" required="required">
-        </div><br>
+        <table class=table table-bordless table-stripped table-dark>
+            <tr>
+                <td>Selecione</td>
+                <td>ID</td>
+                <td>Nome</td>
+                <td>Autor</td>
+                <td>Genero</td>
+                <td>Status</td>
+
+            </tr>
+            <?php
+            //session_start();
+            if (isset($_SESSION["data1"])) {
+                $retorno = $_SESSION["data1"];
+                foreach ($retorno as $value) {
+            ?>
+                    <tr>
+                        <td><input type="radio" required id="1" name="escolha" value="<?= $value[0] ?>"></td>
+                        <td><?php echo $value[0]; ?></td>
+                        <td><?php echo $value[1]; ?></td>
+                        <td><?php echo $value[2]; ?></td>
+                        <td><?php echo $value[3]; ?></td>
+                        <td><?php echo $value[4]; ?></td>
+                    </tr>
+            <?php }
+            } else {
+            } ?>
+        </table>
+        <input type="hidden" name ="usuario" value="<?= $_SESSION["email"] ?>">
         <input class="btn btn-lg btn-block btn-success" type="submit" value="Devolver" onclick=alerta()>
     </form>
+    <?php
+        if(isset($retorno)){
+            session_unset();
+            
+            //session_destroy();
+        }else{
+            header("Location:http://localhost/mvc_biblioteca/livros/listEmprest");
+        }
+    ?>
 </body>
 <!-- Footer -->
 <footer class="page-footer font-small blue">

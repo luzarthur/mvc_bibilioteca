@@ -87,12 +87,24 @@ class livrosController
         $_SESSION["data"] = $model->listDispModel();
         header("Location: http://localhost/mvc_biblioteca/livros/view/pegar_livro.php"); 
     }
+
+    public function listEmprest()
+    {
+        session_start();
+        $model = new livrosModel();
+        $vo = new livrosVO();
+        $vo->setUsuario($_POST["usuario"]);
+        $_SESSION["data1"] = $model->listEmprestModel($vo);
+        //header("Location: http://localhost/mvc_biblioteca/livros/view/devolver_livro.php"); 
+    }
+
     public function emprestar()
     {
         $model = new livrosModel();
         $vo = new livrosVO();
 
         $vo->setID($_POST["escolha"]);
+        $vo->setUsuario($_POST["usuario"]);
         $model->emprestarModel($vo);
         $msg = $vo->getMsg();
         

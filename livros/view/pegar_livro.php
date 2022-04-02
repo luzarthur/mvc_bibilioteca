@@ -88,6 +88,7 @@
             } else {
             } ?>
         </table>
+        <input type="hidden" name ="usuario" value="<?= $_SESSION["email"] ?>">
         <input type="submit" class="btn btn-lg btn-block btn-Success" value="Pegar Livro emprestado">
         <a href="http://localhost/mvc_biblioteca/livros/listDisp"><buttton class="btn btn-lg btn-block btn-primary">Atualizar Lista</buttton></a>
     </form>
