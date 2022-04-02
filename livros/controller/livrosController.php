@@ -93,18 +93,19 @@ class livrosController
         session_start();
         $model = new livrosModel();
         $vo = new livrosVO();
-        $vo->setUsuario($_POST["usuario"]);
+        $vo->setUsuario($_SESSION["email"]);
         $_SESSION["data1"] = $model->listEmprestModel($vo);
-        //header("Location: http://localhost/mvc_biblioteca/livros/view/devolver_livro.php"); 
+        header("Location: http://localhost/mvc_biblioteca/livros/view/devolver_livro.php"); 
     }
 
     public function emprestar()
     {
+        session_start();
         $model = new livrosModel();
         $vo = new livrosVO();
 
         $vo->setID($_POST["escolha"]);
-        $vo->setUsuario($_POST["usuario"]);
+        $vo->setUsuario($_SESSION["email"]);
         $model->emprestarModel($vo);
         $msg = $vo->getMsg();
         
@@ -120,18 +121,19 @@ class livrosController
         $model = new livrosModel();
         $vo = new livrosVO();
         
-        $vo->setID($_POST["idLivro"]);
+        $vo->setID($_POST["escolha"]);
+        $vo->setUsuario('null');
         $model->devolverModel($vo);
         $msg = $vo->getMsg();
 
         if($msg == "livro devolvido"){
             session_start();
             $_SESSION["msg"] = "Livro devolvido!Obrigado e volte sempre!";
-            header("Location: http://localhost/mvc_biblioteca/livros/view/devolver_livro.php");
+            header("Location: http://localhost/mvc_biblioteca/livros/listEmprest");
         }elseif($msg == "status igual"){
             session_start();
             $_SESSION["msg"] = "ID inserido não corresponde a um livro emprestado, verifique e tente novamente!";
-            header("Location: http://localhost/mvc_biblioteca/livros/view/devolver_livro.php");
+            header("Location: http://localhost/mvc_biblioteca/livros/listEmprest");
         }
 
 

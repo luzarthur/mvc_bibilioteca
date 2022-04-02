@@ -36,7 +36,7 @@ unset($_SESSION["msg"]);
             <li><a href="#">Meus livros</a>
                 <ul>
                     <li><a href="http://localhost/mvc_biblioteca/livros/listDisp">Solicitar Livro</a></li>
-                    <li><a href="devolver_livro.php">Devolver Livro</a></li>
+                    <li><a href="http://localhost/mvc_biblioteca/livros/listEmprest">Devolver Livro</a></li>
                 </ul>
             </li>
             <li><a href="#">Gerenciar Biblioteca</a>
@@ -65,6 +65,8 @@ unset($_SESSION["msg"]);
             }
         }
     </script>
+    <br>
+    <label style="font-family:Poppins, sans-serif" for="formGroupExampleInput">Estes são os livros que você adquiriu,selecione um e clique em "Devolver" caso queira</label><br><br>
     <br>
     <form action="http://localhost/mvc_biblioteca/livros/devolver" method="POST">
         <table class=table table-bordless table-stripped table-dark>
@@ -95,18 +97,10 @@ unset($_SESSION["msg"]);
             } else {
             } ?>
         </table>
-        <input type="hidden" name ="usuario" value="<?= $_SESSION["email"] ?>">
         <input class="btn btn-lg btn-block btn-success" type="submit" value="Devolver" onclick=alerta()>
+        <a href="http://localhost/mvc_biblioteca/livros/listEmprest"><buttton class="btn btn-lg btn-block btn-primary">Atualizar Lista</buttton></a>
     </form>
-    <?php
-        if(isset($retorno)){
-            session_unset();
-            
-            //session_destroy();
-        }else{
-            header("Location:http://localhost/mvc_biblioteca/livros/listEmprest");
-        }
-    ?>
+
 </body>
 <!-- Footer -->
 <footer class="page-footer font-small blue">

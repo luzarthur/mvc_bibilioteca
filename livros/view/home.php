@@ -28,7 +28,7 @@
             <li><a href="#">Meus livros</a>
                 <ul>
                      <li><a href="http://localhost/mvc_biblioteca/livros/listDisp">Solicitar Livro</a></li>
-                     <li><a href="devolver_livro.php">Devolver Livro</a></li>
+                     <li><a href="http://localhost/mvc_biblioteca/livros/listEmprest">Devolver Livro</a></li>
                   </ul>
            </li>
                   <li><a href="#">Gerenciar Biblioteca</a>

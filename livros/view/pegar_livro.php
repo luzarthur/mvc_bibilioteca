@@ -1,19 +1,20 @@
 <?php
-    session_start();
-    if(isset($_SESSION["email"]) and isset($_SESSION["senha"])){
-        session_commit();
-    }else{
-        header('Location: http://localhost/mvc_biblioteca/usuarios/view/login.php');
-    }
-
+  session_start();
+  if (isset($_SESSION["email"]) and isset($_SESSION["senha"])) {
+      if (isset($_SESSION["msg"])) {
+          $alerta = $_SESSION["msg"];
+  ?>
+          <script>
+              alert("<?php echo $alerta; ?>")
+          </script>
+  <?php
+      } else {
+      }
+  } else {
+      header('Location: http://localhost/mvc_biblioteca/usuarios/view/login.php');
+  }
+  unset($_SESSION["msg"]);
 ?>
-
-<script>
-    function alerta(){
-        alert('Livro adquirido! Boa leitura!')
-    }
-</script>
-
 <html lang="pt_br">
 <head>
     <meta charset="UTF-8">
@@ -33,7 +34,7 @@
             <li><a href="#">Meus livros</a>
                 <ul>
                     <li><a href="http://localhost/mvc_biblioteca/livros/listDisp">Solicitar Livro</a></li>
-                    <li><a href="devolver_livro.php">Devolver Livro</a></li>
+                    <li><a href="http://localhost/mvc_biblioteca/livros/listEmprest">Devolver Livro</a></li>
                 </ul>
             </li>
             <li><a href="#">Gerenciar Biblioteca</a>
@@ -57,9 +58,9 @@
 
 <body class="content">
     <br>
-    <label style="font-family:Poppins, sans-serif" for="formGroupExampleInput">Estes são os nosso livros disponiveis, fique a vontade para escolher:</label><br><br>
+    <label style="font-family:Poppins, sans-serif" for="formGroupExampleInput">Estes são os nosso livros disponiveis, fique a vontade para escolher</label><br><br>
 
-    <form action="http://localhost/mvc_biblioteca/livros/emprestar" method="POST" onsubmit="alerta()">
+    <form action="http://localhost/mvc_biblioteca/livros/emprestar" method="POST">
         <table class=table table-bordless table-stripped table-dark>
             <tr>
                 <td>Selecione</td>
@@ -88,19 +89,10 @@
             } else {
             } ?>
         </table>
-        <input type="hidden" name ="usuario" value="<?= $_SESSION["email"] ?>">
         <input type="submit" class="btn btn-lg btn-block btn-Success" value="Pegar Livro emprestado">
         <a href="http://localhost/mvc_biblioteca/livros/listDisp"><buttton class="btn btn-lg btn-block btn-primary">Atualizar Lista</buttton></a>
     </form>
-    <?php
-        if(isset($retorno)){
-            session_unset();
-            //session_destroy();
-        }else{
-            header("Location:http://localhost/mvc_biblioteca/livros/listDisp");
-        }
-    ?>
-
+    
     <br><br><br><br><br><br><br><br><br><br><br><br>
     <!-- Footer -->
     <footer class="page-footer font-small blue">
