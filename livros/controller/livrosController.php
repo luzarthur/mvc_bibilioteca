@@ -87,12 +87,25 @@ class livrosController
         $_SESSION["data"] = $model->listDispModel();
         header("Location: http://localhost/mvc_biblioteca/livros/view/pegar_livro.php"); 
     }
+
+    public function listEmprest()
+    {
+        session_start();
+        $model = new livrosModel();
+        $vo = new livrosVO();
+        $vo->setUsuario($_SESSION["email"]);
+        $_SESSION["data1"] = $model->listEmprestModel($vo);
+        header("Location: http://localhost/mvc_biblioteca/livros/view/devolver_livro.php"); 
+    }
+
     public function emprestar()
     {
+        session_start();
         $model = new livrosModel();
         $vo = new livrosVO();
 
         $vo->setID($_POST["escolha"]);
+        $vo->setUsuario($_SESSION["email"]);
         $model->emprestarModel($vo);
         $msg = $vo->getMsg();
         
@@ -108,7 +121,8 @@ class livrosController
         $model = new livrosModel();
         $vo = new livrosVO();
         
-        $vo->setID($_POST["idLivro"]);
+        $vo->setID($_POST["escolha"]);
+        $vo->setUsuario('null');
         $model->devolverModel($vo);
         $msg = $vo->getMsg();
 

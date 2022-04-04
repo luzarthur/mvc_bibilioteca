@@ -36,6 +36,14 @@
             $sql = "SELECT * FROM livros where Status = 'Disponivel';";
             return $livro->listar($sql);
         }
+
+        public function listEmprestModel(livrosVO $value){
+            $livro = new livrosDAO();
+            $usuario = $value->getUsuario();
+            $sql = "SELECT * FROM livros where Status = 'Emprestado' and livros.usuario = '$usuario';";
+            return $livro->listar($sql);
+        }
+        
         public function emprestarModel(livrosVO $value){
             $livro = new livrosDAO();
             $value->setMsg('livro emprestado');

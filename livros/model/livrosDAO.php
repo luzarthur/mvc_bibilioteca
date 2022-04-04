@@ -77,6 +77,7 @@ class livrosDAO
     {
         $db = new DB();
         $id = $value->getID();
+        $usuario = $value->getUsuario();
 
         $sql = "SELECT COUNT(*) FROM livros where livros.id = :id and livros.Status = :status;";
         $db->getConnection();
@@ -89,10 +90,11 @@ class livrosDAO
             $value->setMsg("status igual");
         } elseif ($pstm->fetchColumn() == 0) {
 
-            $sql = "UPDATE livros SET livros.Status = :status where livros.id = :id";
+            $sql = "UPDATE livros SET livros.Status = :status, livros.usuario = :usuario where livros.id = :id";
             $db->getConnection();
             $pstm = $db->execSql($sql);
             $pstm->bindParam(':id', $id);
+            $pstm->bindParam(':usuario', $usuario);
             $pstm->bindParam(':status', $status);
             $pstm->execute();
             
