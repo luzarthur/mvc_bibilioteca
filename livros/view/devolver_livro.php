@@ -42,7 +42,7 @@ unset($_SESSION["msg"]);
             <li><a href="#">Gerenciar Biblioteca</a>
                 <ul>
                     <li><a href="cadastro_livro.php">Cadastrar Livro</a></li>
-                    <li><a href="deletar_livro.php">Deletar Livro</a></li>
+                    <li><a href="http://localhost/mvc_biblioteca/livros/listDeletar">Deletar Livro</a></li>
                 </ul>
             </li>
             <li><a href="#">Minha Conta</a>
@@ -57,16 +57,8 @@ unset($_SESSION["msg"]);
 </head>
 
 <body class="content">
-    <script>
-        function alerta() {
-            var teste = window.confirm('Deseja realmente devolver o livro ? Depois de confirmada, essa ação não poderá ser desfeita!!!');
-            if (teste == false) {
-                window.location.replace('devolver_livro.php');
-            }
-        }
-    </script>
     <br>
-    <label style="font-family:Poppins, sans-serif" for="formGroupExampleInput">Estes são os livros que você adquiriu,selecione um e clique em "Devolver" caso queira</label><br><br>
+    <label style="font-family:Poppins, sans-serif" for="formGroupExampleInput">Estes são os livros que você adquiriu,selecione um e clique em "Devolver".</label><br><br>
     <br>
     <form action="http://localhost/mvc_biblioteca/livros/devolver" method="POST">
         <table class=table table-bordless table-stripped table-dark>
@@ -80,7 +72,6 @@ unset($_SESSION["msg"]);
 
             </tr>
             <?php
-            //session_start();
             if (isset($_SESSION["data1"])) {
                 $retorno = $_SESSION["data1"];
                 foreach ($retorno as $value) {
@@ -97,7 +88,7 @@ unset($_SESSION["msg"]);
             } else {
             } ?>
         </table>
-        <input class="btn btn-lg btn-block btn-success" type="submit" value="Devolver" onclick=alerta()>
+        <input class="btn btn-lg btn-block btn-success" type="submit" value="Devolver" onclick="return confirm('Deseja realmente devolver este livro ?')">
         <a href="http://localhost/mvc_biblioteca/livros/listEmprest"><buttton class="btn btn-lg btn-block btn-primary">Atualizar Lista</buttton></a>
     </form>
 

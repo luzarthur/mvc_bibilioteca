@@ -28,23 +28,32 @@ class livrosController
             header("Location: view/cadastro_livro.php");
         }
     }
+
+    public function listDeletar()
+    {
+        session_start();
+        $model = new livrosModel();
+        $_SESSION["data"] = $model->listDispModel();
+        header("Location: http://localhost/mvc_biblioteca/livros/view/deletar_livro.php"); 
+    }
+
     public function deletar()
     {
         $model = new livrosModel();
         $vo = new livrosVO();
 
-        $vo->setID($_POST["idLivro"]);
+        $vo->setID($_POST["escolha"]);
         $model->deletarModel($vo);
 
         $msg = $vo->getMsg();
         if ($msg == "nao existe") {
             session_start();
             $_SESSION["msg"] = "Esse ID não corresponde a um livro cadastrado!";
-            header("Location: livros/view/deletar_livro.php");
+            header("Location: http://localhost/mvc_biblioteca/livros/listDeletar");
         } else {
             session_start();
             $_SESSION["msg"] = "Livro deletado!";
-            header("Location: livros/view/deletar_livro.php");
+            header("Location: http://localhost/mvc_biblioteca/livros/listDeletar");
         }
     }
     public function listALL()

@@ -28,7 +28,7 @@ class usuariosDAO
             $value->setStatus("erro de email");
         } else {
             $db->getConnection();
-            $sql = "SELECT COUNT(*) FROM usuarios WHERE email = :email and senha = :senha;";
+            $sql = "SELECT COUNT(*) FROM usuarios WHERE email = :email and senha = MD5(:senha);";
             $otherpstm = $db->execSql($sql);
             $otherpstm->bindParam(':email', $email);
             $otherpstm->bindParam(':senha', $senha);
@@ -51,7 +51,7 @@ class usuariosDAO
         $this->verifEmail($value);
         if ($value->getStatus() == "nao existe") {
             $db->getConnection();
-            $sql = "INSERT INTO usuarios(email,nome,senha) VALUES (:email,:nome,:senha);";
+            $sql = "INSERT INTO usuarios(email,nome,senha) VALUES (:email,:nome,MD5(:senha));";
             $otherpstm = $db->execSql($sql);
             $otherpstm->bindParam(':email', $email);
             $otherpstm->bindParam(':nome', $nome);
@@ -73,7 +73,7 @@ class usuariosDAO
             $value->setStatus("erro de email");
         } else {
             $db->getConnection();
-            $sql = "UPDATE usuarios SET senha = :senha WHERE email = :email";
+            $sql = "UPDATE usuarios SET senha = MD5(:senha) WHERE email = :email";
             $otherpstm = $db->execSql($sql);
             $otherpstm->bindParam(':email', $email);
             $otherpstm->bindParam(':senha', $senha);
@@ -92,7 +92,7 @@ class usuariosDAO
             $email = $value->getEmail();
             $senha = $value->getSenha();
 
-            $sql = "DELETE FROM usuarios where email = :email AND senha = :senha;";
+            $sql = "DELETE FROM usuarios where email = :email AND senha = MD5(:senha);";
             $db->getConnection();
             $ottherpstm = $db->execSql($sql);
             $ottherpstm->bindParam(':email', $email);

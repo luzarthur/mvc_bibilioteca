@@ -40,7 +40,7 @@
             <li><a href="#">Gerenciar Biblioteca</a>
                 <ul>
                     <li><a href="cadastro_livro.php">Cadastrar Livro</a></li>
-                    <li><a href="deletar_livro.php">Deletar Livro</a></li>
+                    <li><a href="http://localhost/mvc_biblioteca/livros/listDeletar">Deletar Livro</a></li>
                 </ul>
             </li>
             <li><a href="#">Minha Conta</a>
@@ -72,7 +72,6 @@
 
             </tr>
             <?php
-            //session_start();
             if (isset($_SESSION["data"])) {
                 $retorno = $_SESSION["data"];
                 foreach ($retorno as $value) {

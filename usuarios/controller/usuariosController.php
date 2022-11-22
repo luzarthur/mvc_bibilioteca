@@ -46,7 +46,6 @@ class usuariosController
         $model->criarUsuarioModel($vo);
 
         $status = $vo->getStatus();
-        //var_dump($status);
         if($status == "erro de email"){
             session_start();
             $_SESSION["msg"] = "Email inserido já foi cadastrado!Faça login ou altere o email digitado";
